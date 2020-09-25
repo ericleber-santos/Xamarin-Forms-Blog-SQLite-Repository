@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Simulacao.Views.PostsDetailPage">
+    <ContentPage.Content>
+        <StackLayout 
+            Margin="0" 
+            Spacing="0" 
+            Padding="10" >
+            <Label
+                Margin="0, 5, 0, 0" 
+                Text="Post" 
+                BackgroundColor="#c191d6" 
+                HorizontalTextAlignment="Center" 
+                FontAttributes="Bold"/> 
+            <!--POST-->
+            <StackLayout
+                Margin="0"    
+                Padding="5" 
+                Spacing="0">  
+                <Label  
+                    Margin="10, 0, 10, 0"
+                    Text="Title: "
+                    TextColor="#1d2e4c"
+                    FontAttributes="Bold"
+                    HorizontalOptions="Start"/>
+                <Label  
+                    Margin="10, 0, 10, 0"
+                    Text="{Binding _Post.POST_TITLE}"
+                    TextColor="#1d2e4c"                   
+                    HorizontalOptions="Start"/>                
+                <Label  
+                    Margin="10, 10, 10, 0"
+                    Text="Body: "
+                    TextColor="#1d2e4c"
+                    FontAttributes="Bold"
+                    HorizontalOptions="Start"/>
+                <ScrollView>
+                    <Label  
+                    Margin="10, 0, 10, 0"
+                    Text="{Binding _Post.POST_BODY}"
+                    TextColor="#1d2e4c"
+                    HeightRequest="180"
+                    HorizontalOptions="Start"/>                   
+                </ScrollView>
+            </StackLayout>
+            <!--COMMENTS-->
+            <Label 
+                Margin="0, 5, 0, 0" 
+                Text="Comments" 
+                BackgroundColor="#c191d6" 
+                HorizontalTextAlignment="Center" 
+                FontAttributes="Bold"/> 
+            <CollectionView 
+                    Margin="5"
+                    x:Name="collectionComments"
+                    ItemsSource="{Binding CommentsCollection}"                        
+                    SelectionMode="None">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" Span="1"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <StackLayout 
+                                Padding="5" 
+                                Spacing="0">
+                                <FlexLayout
+                                    Direction="Column" 
+                                    AlignItems="Stretch" 
+                                    JustifyContent="SpaceAround">
+                                    <Label 
+                                        Margin="10,0,0,0"
+                                        VerticalTextAlignment="Center">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span   
+                                                    Text="Name: " 
+                                                    FontAttributes="Bold"
+                                                    FontSize="Small"/>
+                                                <Span
+                                                    Text="{Binding COMMENT_NAME}"                                                                                                                                                             
+                                                    FontSize="Small"/>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <Label 
+                                        Margin="10,5,0,0"
+                                        VerticalTextAlignment="Center">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span   
+                                                    Text="E-mail: " 
+                                                    FontAttributes="Bold"
+                                                    FontSize="Small"/>
+                                                <Span
+                                                    Text="{Binding COMMENT_EMAIL}"                                                                                                                                                             
+                                                    FontSize="Small"/>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <Label 
+                                        Margin="10,5,0,0"
+                                        VerticalTextAlignment="Center">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span   
+                                                    Text="Comment: " 
+                                                    FontAttributes="Bold"
+                                                    FontSize="Small"/>
+                                                <Span
+                                                    Text="{Binding COMMENT_BODY}"                                                                                                                                                             
+                                                    FontSize="Small"/>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <BoxView Margin="5" HeightRequest="1" BackgroundColor="LightGray"/>
+                                </FlexLayout>
+                            </StackLayout>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <Button
+                x:Name="btnSalvar"
+                Margin="5,5,10,0"
+                CornerRadius="5"
+                TextColor="White"                            
+                BackgroundColor="#039BE6" 
+                Text="Add Comment" 
+                FontSize="Micro"
+                Command="{Binding AddCommentCommand}"/> 
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

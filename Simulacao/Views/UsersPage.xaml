@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Simulacao.Views.UsersPage"
+             Title="Users">
+    <ContentPage.Resources>
+        <Style TargetType="Grid">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor"
+                                        Value="#c191d6" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
+    <StackLayout>
+        <CollectionView Margin="5"
+                    x:Name="posts"
+                    ItemsSource="{Binding UsersCollection}"                        
+                    SelectionMode="Single"
+                    SelectedItem="{Binding SelectedUser}"                
+                    SelectionChangedCommand="{Binding ItemSelectionChangedCommand}">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Horizontal" Span="3"/>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Frame  HasShadow="True"
+                            BorderColor="LightSteelBlue" 
+                            Padding="5" 
+                            CornerRadius="5" 
+                            BackgroundColor="Transparent">
+                            <StackLayout Padding="5" Spacing="0">
+                                <FlexLayout Direction="Column" 
+                                        AlignItems="Start" 
+                                        JustifyContent="Start">
+                                    <Label  Text="Name:" 
+                                        FontSize="Small"/>
+                                    <Label  Text="{Binding USER_NAME}" 
+                                        FontSize="Small" 
+                                        FontAttributes="Bold" />
+                                    <Label  Text="Email:" 
+                                        FontSize="Small"/>
+                                    <Label  Text="{Binding USER_EMAIL}" 
+                                        FontSize="Small" 
+                                        FontAttributes="Bold" />
+                                    <Label  Text="Website:" 
+                                        FontSize="Small"/>
+                                    <Label  Text="{Binding USER_WEBSITE}" 
+                                        FontSize="Small" 
+                                        FontAttributes="Bold" />
+                                </FlexLayout>
+                            </StackLayout>
+                        </Frame>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <ActivityIndicator x:Name="activityIndicator"
+                       Color="Orange"
+                       VerticalOptions="CenterAndExpand"
+                       HorizontalOptions="Fill"
+                       IsRunning="{Binding IsBusy}"/>
+    </StackLayout>
+</ContentPage>
