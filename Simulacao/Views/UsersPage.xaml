@@ -1,8 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Simulacao.Views.UsersPage"
-             Title="Users">
+             x:Class="Simulacao.Views.UsersPage"            
+             xmlns:resource="clr-namespace:Simulacao.Resources" 
+             Title="{x:Static resource:AppResources.TitleUsers}">
     <ContentPage.Resources>
         <Style TargetType="Grid">
             <Setter Property="VisualStateManager.VisualStateGroups">
@@ -22,7 +23,7 @@
     </ContentPage.Resources>
     <StackLayout>
         <CollectionView Margin="5"
-                    x:Name="posts"
+                    x:Name="users"
                     ItemsSource="{Binding UsersCollection}"                        
                     SelectionMode="Single"
                     SelectedItem="{Binding SelectedUser}"                

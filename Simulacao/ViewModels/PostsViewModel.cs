@@ -38,7 +38,7 @@ namespace Simulacao.ViewModels
         {
             _User = null;         
             this.PostsCollection = new ObservableCollection<Post>();
-            Title = "All Posts";           
+            Title = Resources.AppResources.TitlePosts;           
         }
 
         public PostsViewModel(User user)

@@ -39,43 +39,44 @@ namespace Simulacao.ViewModels
         #region métodos
         public async Task UsersDownload()
         {
-            if (Connectivity.NetworkAccess == NetworkAccess.Internet)
-            {
-                var users = await UsersService.DownloadUsersAsync();
+            var users = await UsersService.DownloadUsersAsync();
 
-                if (users != null && users.Count > 0)
-                {
-                    await userRep.DeleteAllAsync();
-                    await userRep.InsertAllAsync(users);
-                }                
+            if (users != null && users.Count > 0)
+            {
+                await userRep.DeleteAllAsync();
+                await userRep.InsertAllAsync(users);
             }
         }
 
         public async Task PostsDownload()
         {
-            if (Connectivity.NetworkAccess == NetworkAccess.Internet)
-            {
-                var posts = await PostsService.DownloadPostsAsync();
+            var posts = await PostsService.DownloadPostsAsync();
 
-                if (posts != null && posts.Count > 0)
-                {
-                    await postRep.DeleteAllAsync();
-                    await postRep.InsertAllAsync(posts);
-                }
+            if (posts != null && posts.Count > 0)
+            {
+                await postRep.DeleteAllAsync();
+                await postRep.InsertAllAsync(posts);
             }
         }
 
         public async Task CommentsDownload()
         {
+            var comments = await CommentsService.DownloadCommentsAsync();
+
+            if (comments != null && comments.Count > 0)
+            {
+                await commentsRep.DeleteAllAsync();
+                await commentsRep.InsertAllAsync(comments);
+            }
+        }
+
+        public async Task DownloadApiData()
+        {
             if (Connectivity.NetworkAccess == NetworkAccess.Internet)
             {
-                var comments = await CommentsService.DownloadCommentsAsync();
-
-                if (comments != null && comments.Count > 0)
-                {                  
-                    await commentsRep.DeleteAllAsync();
-                    await commentsRep.InsertAllAsync(comments);
-                }
+                await UsersDownload();
+                await PostsDownload();
+                await CommentsDownload();
             }
         }
 
@@ -123,6 +124,14 @@ namespace Simulacao.ViewModels
                     Debug.WriteLine(e);
                 }
             }
+        }
+
+        public async Task Msg()
+        {
+            if (UsersCollection.Count < 1)
+            {
+                await App.Current.MainPage.DisplayAlert("Oops", Resources.AppResources.MsgNoInternet, "Ok");
+            }            
         }
 
         #endregion

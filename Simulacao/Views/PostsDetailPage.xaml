@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:resource="clr-namespace:Simulacao.Resources" 
              x:Class="Simulacao.Views.PostsDetailPage">
     <ContentPage.Content>
         <StackLayout 
@@ -20,7 +21,7 @@
                 Spacing="0">  
                 <Label  
                     Margin="10, 0, 10, 0"
-                    Text="Title: "
+                    Text="{x:Static resource:AppResources.PostDetailTitle}"
                     TextColor="#1d2e4c"
                     FontAttributes="Bold"
                     HorizontalOptions="Start"/>
@@ -31,7 +32,7 @@
                     HorizontalOptions="Start"/>                
                 <Label  
                     Margin="10, 10, 10, 0"
-                    Text="Body: "
+                    Text="{x:Static resource:AppResources.PostDetailBody}"
                     TextColor="#1d2e4c"
                     FontAttributes="Bold"
                     HorizontalOptions="Start"/>
@@ -47,7 +48,7 @@
             <!--COMMENTS-->
             <Label 
                 Margin="0, 5, 0, 0" 
-                Text="Comments" 
+                Text="{x:Static resource:AppResources.Comments}" 
                 BackgroundColor="#c191d6" 
                 HorizontalTextAlignment="Center" 
                 FontAttributes="Bold"/> 
@@ -81,7 +82,7 @@
                                         <Label.FormattedText>
                                             <FormattedString>
                                                 <Span   
-                                                    Text="Name: " 
+                                                    Text="{x:Static resource:AppResources.CommentName}" 
                                                     FontAttributes="Bold"
                                                     FontSize="Small"/>
                                                 <Span
@@ -111,7 +112,7 @@
                                         <Label.FormattedText>
                                             <FormattedString>
                                                 <Span   
-                                                    Text="Comment: " 
+                                                    Text="{x:Static resource:AppResources.Comment}" 
                                                     FontAttributes="Bold"
                                                     FontSize="Small"/>
                                                 <Span
@@ -133,7 +134,7 @@
                 CornerRadius="5"
                 TextColor="White"                            
                 BackgroundColor="#039BE6" 
-                Text="Add Comment" 
+                Text="{x:Static resource:AppResources.BtnAddComment}" 
                 FontSize="Micro"
                 Command="{Binding AddCommentCommand}"/> 
         </StackLayout>

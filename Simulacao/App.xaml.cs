@@ -1,4 +1,6 @@
 ﻿using Simulacao.Helpers;
+using System.Globalization;
+using System.Threading;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -10,6 +12,7 @@ namespace Simulacao
 
         public App()
         {
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.InstalledUICulture;
             InitializeComponent();
             Task.FromResult(DBHelper.CriateTablesAsync());
             MainPage = new AppShell();

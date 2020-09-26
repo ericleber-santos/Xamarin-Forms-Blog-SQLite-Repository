@@ -53,7 +53,7 @@ namespace Simulacao.ViewModels
 
         private async Task AddComment()
         {
-            await App.Current.MainPage.DisplayAlert("Oops", "Not implemented yet, man working!","Ok");
+            await App.Current.MainPage.DisplayAlert("Oops", Resources.AppResources.MsgNotImplemented, "Ok");
         }
 
         #endregion
