@@ -3,7 +3,7 @@
 namespace Simulacao.Models
 {
     [Table("Post")]
-    public class Post : IBaseModel
+    public class Post 
     {       
         [PrimaryKey, AutoIncrement]
         public int ID { get; set; }

@@ -4,6 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using Simulacao.Resources;
 
 namespace Simulacao
 {
@@ -13,8 +14,8 @@ namespace Simulacao
         public App()
         {
             Thread.CurrentThread.CurrentUICulture = CultureInfo.InstalledUICulture;
-            InitializeComponent();
             Task.FromResult(DBHelper.CriateTablesAsync());
+            InitializeComponent();            
             MainPage = new AppShell();
         }
 
@@ -22,7 +23,7 @@ namespace Simulacao
         {
             if (Connectivity.NetworkAccess != NetworkAccess.Internet)
             {
-                await App.Current.MainPage.DisplayAlert("Oops", "You need to connect to the internet!", "Ok");
+                await App.Current.MainPage.DisplayAlert("Oops", AppResources.MsgNoInternet, "Ok");
             }
         }
 
